@@ -23,11 +23,11 @@ export class TourItemController {
 
   constructor(private readonly toursService: ToursService) {}
 
-  @Get('getImage/:imgName')
-  getImage(@Param('imgName') imgName: string): StreamableFile {
-    const file = createReadStream(join(process.cwd(), `./public/${imgName}`));
-    return new StreamableFile(file);
-  }
+  // @Get('getImage/:imgName')
+  // getImage(@Param('imgName') imgName: string): StreamableFile {
+  //   const file = createReadStream(join(process.cwd(), `./public/${imgName}`));
+  //   return new StreamableFile(file);
+  // }
 
   @Post()
   @UseInterceptors(

@@ -1,12 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { OrderDto } from '../../dto/order.dto';
 import { InjectModel } from '@nestjs/mongoose';
-import { Tour, TourDocument } from '../../schemas/Tour';
-import { Model, Types } from 'mongoose';
+import { JwtService } from '@nestjs/jwt';
+import { Model } from 'mongoose';
+
+import { OrderDto } from '../../dto/order.dto';
 import { Order, OrderDocument } from '../../schemas/Order';
 import { IOrder } from '../../models/IOrder';
-import { JwtService } from '@nestjs/jwt';
-// import ObjectId = module
 
 @Injectable()
 export class OrdersService {

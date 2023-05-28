@@ -1,7 +1,19 @@
-:host{
-  height: 60px;
-  width: 100%;
+:host {
   display: block;
-  //position: sticky;
-  //bottom: 0;
+  height: 55px;
+  width: 100%;
+  background: #f8f9fa;
+}
+
+.container {
+  background: #f8f9fa;
+}
+
+.tel {
+  font-weight: 500;
+}
+
+.email,
+.address {
+  color: #495057;
 }
