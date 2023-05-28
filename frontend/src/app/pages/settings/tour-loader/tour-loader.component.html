@@ -1,0 +1,67 @@
+<form class="form-wrapper" #form="ngForm" (ngSubmit)="createTour2(form)">
+  <div class="input-wrapper mt-3">
+    <div class="left-padding">Наименование</div>
+    <input
+      type="text"
+      class="input-item"
+      pInputText
+      [ngClass]="{'input-error': !name}"
+      #name="ngModel"
+      ngModel
+      name="name"
+    >
+  </div>
+  <div class="input-wrapper">
+    <div class="left-padding">Описание</div>
+    <input
+      type="text"
+      class="input-item"
+      pInputText
+      [ngClass]="{'input-error': !description }"
+      #description="ngModel"
+      ngModel
+      name="description"
+    >
+  </div>
+  <div class="input-wrapper">
+    <div class="left-padding">Оператор</div>
+    <input
+      type="text"
+      class="input-item"
+      pInputText
+      #operator="ngModel"
+      ngModel
+      name="operator"
+    >
+  </div>
+  <div class="input-wrapper">
+    <div class="left-padding">Цена</div>
+    <input
+      type="number"
+      step="500"
+      class="input-item"
+      pInputText
+      #price="ngModel"
+      ngModel
+      name="price"
+    >
+  </div>
+  <div class="input-wrapper">
+    <div class="left-padding">Изображение</div>
+    <input
+      type="file"
+      #inputFileEl
+      ngModel
+      name="img"
+      (change)="selectFile($event)"
+    >
+  </div>
+  <div class="mt-5 d-flex justify-content-center">
+    <button class="create-button btn btn-success" [disabled]="!name || !description">
+      Создать тур
+    </button>
+  </div>
+</form>
+<div class="image_block">
+  <img src="tourImg" #imgEl id="outImage" class="image" *ngIf="tourImg">
+</div>

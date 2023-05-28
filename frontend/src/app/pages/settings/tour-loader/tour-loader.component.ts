@@ -1,162 +1,13 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {FormControl, FormGroup, NgForm, Validators} from "@angular/forms";
-import {TicketsService} from "../../../services/tickets/tickets.service";
-import {MessageService} from "primeng/api";
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { TicketsService } from '../../../services/tickets/tickets.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-tour-loader',
-  template: `
-    <div class="wrapper">
-      <div>
-    <form #form="ngForm" (ngSubmit)="createTour2(form)">
-      <div>
-        <label class="mx-3" for="name">Наименование</label>
-        <input type="text"
-               class="pi-phone"
-               pInputText
-               [ngClass]="{'input-error': !name}"
-               #name="ngModel"
-               ngModel
-               name="name"/>
-      </div>
-      <div>
-        <label class="mx-3" for="description">Описание</label>
-        <input type="text"
-               class="mt-3"
-               pInputText
-               [ngClass]="{'input-error': !description }"
-               #description="ngModel"
-               ngModel
-               name="description"/>
-      </div>
-      <div>
-        <label class="mx-3" for="operator">Оператор</label>
-        <input type="text"
-               class="mt-3"
-               pInputText
-               #operator="ngModel"
-               ngModel
-               name="operator"/>
-      </div>
-      <div>
-        <label class="mx-3" for="price">Цена</label>
-        <input type="number"
-               step="500"
-               class="mt-3"
-               pInputText
-               #price="ngModel"
-               ngModel
-               name="price"/>
-      </div>
-      <div>
-        <label class="mx-3" for="img">Изображение</label>
-        <input type="file"
-               class="mt-3"
-               #inputFileEl
-               ngModel
-               name="img"
-               (change)="selectFile($event)"
-        />
-      </div>
-      <div class="mt-5 d-flex justify-content-center">
-        <button class="btn btn-primary"
-                [disabled]="!name || !description "
-        >
-          Создать тур
-        </button>
-      </div>
-    </form>
-
-<!--    <form [formGroup]="tourForm">-->
-<!--      <div>-->
-<!--        <label class="mx-3" for="name">Наименование</label>-->
-<!--        <input type="text"-->
-<!--               class="pi-phone"-->
-<!--               pInputText-->
-<!--               formControlName="name"-->
-<!--               id="name"-->
-<!--        />-->
-<!--      </div>-->
-<!--      <div>-->
-<!--        <label class="mx-3" for="description">Описание</label>-->
-<!--        <input type="text"-->
-<!--               class="mt-3"-->
-<!--               pInputText-->
-<!--               formControlName="description"-->
-<!--               id="description"-->
-<!--        />-->
-<!--      </div>-->
-<!--      <div>-->
-<!--        <label class="mx-3" for="operator">Оператор</label>-->
-<!--        <input type="text"-->
-<!--               class="mt-3"-->
-<!--               pInputText-->
-<!--               formControlName="operator"-->
-<!--               id="operator"/>-->
-<!--      </div>-->
-<!--      <div>-->
-<!--        <label class="mx-3" for="price">Цена</label>-->
-<!--        <input type="number"-->
-<!--               step="500"-->
-<!--               class="mt-3"-->
-<!--               pInputText-->
-<!--               formControlName="price"-->
-<!--               id="price"/>-->
-<!--      </div>-->
-<!--      <div>-->
-<!--        <label class="mx-3" for="img">Изображение</label>-->
-<!--        <input type="file"-->
-<!--               class="mt-3"-->
-<!--               #inputFileEl-->
-<!--               formControlName="img"-->
-<!--               id="img"-->
-<!--               (change)="selectFile($event)"-->
-<!--        />-->
-<!--      </div>-->
-
-<!--      <div class="mt-5 d-flex justify-content-center">-->
-<!--        <button class="btn btn-primary"-->
-<!--                type="submit"-->
-<!--                (click)="createTour()"-->
-<!--                [disabled]="!tourForm.valid"-->
-<!--        >-->
-<!--          Создать тур-->
-<!--        </button>-->
-<!--      </div>-->
-<!--    </form>-->
-
-  </div>
-  <div>
-    <div class="image_block">
-      <img src="tourImg" #imgEl id="outImage" class="image" *ngIf="tourImg">
-    </div>
-  </div>
-</div>
-
-  `,
-  styles: [
-    `
-      .wrapper{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-      }
-      .image_block{
-        display: inline-block;
-        width: 200px;
-        height: 200px;
-
-
-      }
-      .image{
-        width: 100%;
-        height: 100%;
-      }
-
-  `
-  ]
+  templateUrl: './tour-loader.component.html',
+  styleUrls: ['./tour-loader.component.scss'],
 })
-//
 
 export class TourLoaderComponent implements OnInit {
   tourForm: FormGroup;
@@ -241,7 +92,6 @@ export class TourLoaderComponent implements OnInit {
 
   }
 
-
   selectFile(ev: any) {
     if (!(ev.target.files.length > 0)) {
       alert('files is empty')
@@ -249,7 +99,7 @@ export class TourLoaderComponent implements OnInit {
     }
 
     this.tourImg = ev.target.files[0];
-    var fr = new FileReader();
+    let fr = new FileReader();
     console.log(this.imgEl)
     fr.onload = () => {
       this.imgEl.nativeElement.src = fr.result as string;

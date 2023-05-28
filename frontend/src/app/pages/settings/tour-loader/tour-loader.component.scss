@@ -1,0 +1,37 @@
+.form-wrapper {
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100%;
+  width: 29rem;
+  flex: 1;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.input-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input-item {
+  width: 12rem;
+  height: 2.5rem;
+  border-radius: 5px;
+  border: 1px solid gray;
+  margin: 1rem 2rem 1rem 1rem;
+}
+
+.left-padding {
+  padding-left: 2.5rem;
+}
+
+.create-button {
+  width: 10rem;
+  height: 2.75rem;
+  margin-bottom: 2rem;
+  color: RGBA(255, 255, 255, 0.85);
+  box-shadow: rgba(0, 0, 0, 0.16) 0 3px 6px, rgba(0, 0, 0, 0.23) 0 3px 6px;
+}
+
+
