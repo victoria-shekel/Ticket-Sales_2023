@@ -1,0 +1,16 @@
+.statistics-container {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}
+
+.statistics-table {
+  width: 50rem;
+}
+
+.statistics-button-wrapper {
+  text-align: center;
+  padding-left: 2rem;
+}

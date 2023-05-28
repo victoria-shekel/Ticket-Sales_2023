@@ -1,6 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, NgForm, Validators} from "@angular/forms";
-import {TicketsService} from "../../../../services/tickets/tickets.service";
+import {TicketsService} from "../../../services/tickets/tickets.service";
 import {MessageService} from "primeng/api";
 
 @Component({

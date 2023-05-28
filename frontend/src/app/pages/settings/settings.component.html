@@ -1,0 +1,15 @@
+<div class="d-flex justify-content-center">
+  <p-tabView>
+    <p-tabPanel header='Смена пароля'>
+      <app-change-password></app-change-password>
+    </p-tabPanel>
+    <p-tabPanel  header='Статистика'>
+      <app-statistics></app-statistics>
+    </p-tabPanel>
+    <p-tabPanel header='Загрузка тура'>
+      <ng-template pTemplate="content">
+        <app-tour-loader></app-tour-loader>
+      </ng-template>
+    </p-tabPanel>
+  </p-tabView>
+</div>
