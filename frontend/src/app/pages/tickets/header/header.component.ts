@@ -1,9 +1,9 @@
-import {Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
-import {MenuItem} from "primeng/api";
-import {IUser} from "../../../models/IUser";
-import {UserService} from "../../../services/user/user.service";
-import {IMenuType} from "../../../models/IMenuType";
-import {AuthService} from "../../../services/auth/auth.service";
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { MenuItem } from 'primeng/api';
+
+import { IUser } from '../../../models/IUser';
+import { IMenuType } from '../../../models/IMenuType';
+import { AuthService } from '../../../services/auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -11,43 +11,27 @@ import {AuthService} from "../../../services/auth/auth.service";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
+  @Input() menuType: IMenuType;
+
   items: MenuItem[];
   time: Date;
-  user:IUser|null;
-  @Input() menuType: IMenuType;
-  private timerInterval: number;
-
-  private settingsActive = false;
+  user: IUser | null;
+  timerInterval: number;
+  settingsActive = false;
 
   constructor(
     private authService: AuthService
   ) { }
 
   ngOnInit(): void {
-    // this.user = this.userService.getUser();
     this.initMenuItems();
-    // this.items =
-    //   [
-    //   {
-    //     label: 'Билеты',
-    //     routerLink:['tickets-list']
-    //   },
-    //   {
-    //     label: 'Заказы',
-    //     routerLink:['orders']
-    //   },
-    //   {
-    //     label: 'Выйти',
-    //     routerLink:['/auth']
-    //   }
-    // ];
 
     this.timerInterval = window.setInterval(()=>{
       this.time = new Date();
     },1000)
   }
   ngOnChanges(ev: SimpleChanges): void {
-    this.settingsActive = this.menuType?.type === "extended";
+    this.settingsActive = this.menuType?.type === 'extended';
     this.items = this.initMenuItems();
   }
   ngOnDestroy() {
@@ -55,7 +39,6 @@ export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
       window.clearInterval(this.timerInterval);
     }
   }
-
 
   initMenuItems(): MenuItem[] {
     console.log('initMenuItems')
@@ -80,8 +63,6 @@ export class HeaderComponent implements OnInit, OnChanges, OnDestroy {
           this.authService.logout();
         }
       },
-
     ];
   }
-
 }
