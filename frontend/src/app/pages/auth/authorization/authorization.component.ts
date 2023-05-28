@@ -16,18 +16,19 @@ import { ConfigService } from '../../../services/config/config.service';
 export class AuthorizationComponent implements OnInit,OnDestroy {
   login: string;
   psw: string;
-  loginText='Логин';
-  pswText='Пароль';
-  selectedValue:boolean;
-  isRememberMe:boolean;
-  cardNumber:string;
-  authTextButton:string;
-  useUserCard:boolean = false;
+  loginText = 'Логин';
+  pswText = 'Пароль';
+  selectedValue: boolean;
+  isRememberMe: boolean;
+  cardNumber: string;
+  authTextButton: string;
+  useUserCard: boolean = false;
 
-  constructor(public authService: AuthService,
-              private messageService: MessageService,
-              private router: Router,
-              public userService: UserService
+  constructor(
+    public authService: AuthService,
+    private messageService: MessageService,
+    private router: Router,
+    public userService: UserService,
   ) { }
 
   ngOnInit(): void {
@@ -77,15 +78,12 @@ export class AuthorizationComponent implements OnInit,OnDestroy {
         })
   }
 
+  /**
+   * Проверить при авторизации
+   */
   checkAuth(){
-
-    if(this.userService.getUser()){
-      this.onAuth(null,this.userService.getUser())
+    if(this.userService.getUser()) {
+      this.onAuth(null,this.userService.getUser());
     }
-  }
-
-  logout() {
-    this.userService.setUser(null);
-    this.userService.removeUserFromStorage();
   }
 }

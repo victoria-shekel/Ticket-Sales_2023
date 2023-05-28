@@ -1,4 +1,41 @@
-.authorization-input-wrap span {
-  display: inline-block;
-  width: 130px;
+.form-container {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  height: 27.5rem;
+  width: 29rem;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.input-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.button-wrapper {
+  display: flex;
+  height: 13rem;
+  justify-content: center;
+  align-items: end;
+  padding-bottom: 2rem;
+}
+
+.input-item {
+  height: 2.75rem;
+  margin: 1rem 2rem 1rem 1rem;
+}
+
+.button {
+  height: 3rem;
+  box-shadow: rgba(0, 0, 0, 0.16) 0 3px 6px, rgba(0, 0, 0, 0.23) 0 3px 6px;
+}
+
+.click-wrapper {
+  cursor: pointer;
+}
+
+.title-padding {
+  padding-left: 2.5em;
 }
