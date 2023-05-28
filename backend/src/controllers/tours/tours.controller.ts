@@ -20,6 +20,7 @@ export class ToursController {
   async getAllTours(): Promise<ITour[]> {
     return this.toursService.getAllTours();
   }
+
   @UseGuards(JwtAuthGuard)
   @Get(':id')
   async getTourById(@Param('id') id): Promise<ITour> {
@@ -39,6 +40,7 @@ export class ToursController {
   async generateTours(): Promise<any> {
     return this.toursService.generateTours();
   }
+
   @UseGuards(JwtAuthGuard)
   @Delete(':remove')
   async removeAllTours(@Param('remove') remove): Promise<any> {

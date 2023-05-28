@@ -37,7 +37,6 @@ export class UsersController {
     return this.userService.getUserById(id);
   }
 
-  // @UseGuards(JwtAuthGuard)
   @Post()
   sendUser(@Body() data: UserDto): Promise<IUser> {
     return this.userService.checkRegUser(data.login).then((queryRes) => {
@@ -60,20 +59,8 @@ export class UsersController {
   @UseGuards(AuthGuard('local'))
   @Post(':login')
   async authUser(@Body() data: UserDto, @Param('login') login): Promise<any> {
-    //Promise<IUser | boolean>
     console.log('userController');
     return await this.userService.login(data);
-
-    // this.userService
-    //   .checkAuthUser(data.login, data.psw)
-    //   .then((queryRes) => {
-    //     if (queryRes.length !== 0) {
-    //       return Promise.resolve(queryRes[0]);
-    //     } else {
-    //       console.log('err - user is exists');
-    //       return Promise.reject();
-    //     }
-    //   });
   }
 
   @UseGuards(JwtAuthGuard)
