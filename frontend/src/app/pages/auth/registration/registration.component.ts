@@ -5,7 +5,6 @@ import {AuthService} from "../../../services/auth/auth.service";
 import {ConfigService} from "../../../services/config/config.service";
 import {UserService} from "../../../services/user/user.service";
 import {NgForm} from "@angular/forms";
-import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-registration',
@@ -16,18 +15,21 @@ export class RegistrationComponent implements OnInit {
   isNeedSaveToLocalStorage: false;
   showCardNumber: boolean;
 
-  constructor(private messageService:MessageService,
+  constructor(
+    private messageService:MessageService,
     private authService:AuthService,
-    private userService: UserService
+    private userService: UserService,
   ) { }
 
   ngOnInit(): void {
     this.showCardNumber = ConfigService.config.useUserCard;
   }
 
-
-
-
+  /**
+   * Зарегистрироваться
+   *
+   * @param userObject
+   */
   registration(userObject: IUser): void {
       this.authService.saveUserRest(userObject)
         .subscribe(
@@ -46,9 +48,6 @@ export class RegistrationComponent implements OnInit {
             });
           }
         );
-
-
-
     }
 
 
@@ -58,11 +57,11 @@ export class RegistrationComponent implements OnInit {
 
   sendForm(form: NgForm): boolean | void {
     const user = form.value;
-    if(user.psw!=user.pswRepeat){
+    if(user.psw != user.pswRepeat){
       this.messageService.add({
-        severity:'error',
-        summary:'Ошибка валидации',
-        detail:'Некорректно подтвержден пароль'
+        severity: 'error',
+        summary: 'Ошибка валидации',
+        detail: 'Некорректно подтвержден пароль'
       });
       return false;
     }

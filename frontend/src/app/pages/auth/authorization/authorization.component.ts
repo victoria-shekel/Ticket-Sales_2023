@@ -1,11 +1,11 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute, Event, Router} from "@angular/router";
-import {AuthService} from "../../../services/auth/auth.service";
-import {IUser} from "../../../models/IUser";
-import {MessageService} from "primeng/api";
-import {UserService} from "../../../services/user/user.service";
-import {ConfigService} from "../../../services/config/config.service";
-import {Subscription} from "rxjs";
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Event, Router} from '@angular/router';
+import { MessageService } from 'primeng/api';
+
+import { AuthService } from '../../../services/auth/auth.service';
+import { IUser } from '../../../models/IUser';
+import { UserService } from '../../../services/user/user.service';
+import { ConfigService } from '../../../services/config/config.service';
 
 @Component({
   selector: 'app-authorization',
@@ -24,30 +24,36 @@ export class AuthorizationComponent implements OnInit,OnDestroy {
   authTextButton:string;
   useUserCard:boolean = false;
 
-  constructor(public authService:AuthService,
-              private messageService:MessageService,
-              private router:Router,
-              public userService:UserService
-              ) { }
+  constructor(public authService: AuthService,
+              private messageService: MessageService,
+              private router: Router,
+              public userService: UserService
+  ) { }
 
   ngOnInit(): void {
     this.useUserCard = ConfigService.config.useUserCard;
-    this.authTextButton='Авторизоваться';
+    this.authTextButton = 'Авторизоваться';
     if (!this.userService.getUser()){
       this.checkAuth();
     }
   }
+
   ngOnDestroy(): void {
   }
-
-
 
   vipStatusSelected(event:Event):void{
     console.log('vipStatusSelected()',event)
   }
-  onAuth(event:MouseEvent|null,user?:IUser|null):void {
+
+  /**
+   * Авторизоваться
+   *
+   * @param event
+   * @param user
+   */
+  onAuth(event: MouseEvent | null, user?: IUser | null): void {
     this.authService
-      .checkUser(user?user:{login:this.login,psw:this.psw})
+      .checkUser(user ? user : {login: this.login, psw: this.psw})
       .subscribe(
         data=>{
         console.log(data);
@@ -59,7 +65,7 @@ export class AuthorizationComponent implements OnInit,OnDestroy {
 
         this.messageService.add({
           severity: 'success',
-          summary: `Авторизация успешна `,
+          summary: `Вы успешно авторизовались`,
         });
         this.router.navigate(['tickets/tickets-list'],{queryParams:{ param1:true}});
         },
@@ -69,8 +75,6 @@ export class AuthorizationComponent implements OnInit,OnDestroy {
             summary: `Имя пользователя или пароль не совпадают`,
           });
         })
-
-
   }
 
   checkAuth(){
