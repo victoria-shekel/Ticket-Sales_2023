@@ -42,8 +42,8 @@ export class AuthorizationComponent implements OnInit,OnDestroy {
   ngOnDestroy(): void {
   }
 
-  vipStatusSelected(event:Event):void{
-    console.log('vipStatusSelected()',event)
+  vipStatusSelected(event: Event): void{
+    console.log('vipStatusSelected()', event)
   }
 
   /**

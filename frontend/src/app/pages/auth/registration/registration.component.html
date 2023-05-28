@@ -1,89 +1,68 @@
-<form  #form="ngForm" (ngSubmit)="sendForm(form)">
-  <div class="d-flex flex-column col-8 m-auto registration-input-wrap">
-    <div>
-      <span class="mx-3">Login</span>
-      <input type="text"
-             class="pi-phone"
-             pInputText
-             autocomplete="login"
-             [ngClass]="{'input-error': !login}"
-             #login="ngModel"
-             ngModel
-             name="login"/>
-    </div>
-    <div>
-      <span class="mx-3">Password</span>
-      <input class="mt-3 "
-             type="password"
-             pInputText
-             [ngClass]="{'input-error': !psw}"
-             #psw="ngModel"
-             ngModel
-             name="psw"/>
-    </div>
-
-    <div >
-      <span class="mx-3">Подтверждение пароля</span>
-      <input type="password"
-             class="mt-3"
-             pInputText
-             [ngClass]="{'input-error': !pswRepeat}"
-             #pswRepeat="ngModel"
-             ngModel
-             name="pswRepeat"/>
-    </div>
-    <div >
-      <span class="mx-3">Email</span>
-      <input type="text"
-             class="mt-3"
-             pInputText
-             autocomplete="email"
-             #email="ngModel"
-             ngModel
-             name="email"/>
-    </div>
-    <div *ngIf="showCardNumber; else noSelected ">
-      <span class="mx-3">Номер карты</span>
-      <input type="text"
-             class="mt-3"
-             pInputText
-             #cardNumber="ngModel"
-             ngModel
-             name="cardNumber"/>
-    </div>
-
-
-    <ng-template #noSelected>
-      <p>Карта не выбрана</p>
-    </ng-template>
-
-
-
-
+<form
+  class="form-wrapper"
+  #form="ngForm"
+  (ngSubmit)="sendForm(form)"
+>
+  <div class="input-wrapper mt-3">
+    <div class="left-padding">Логин</div>
+    <input
+      type="text"
+      class="input-item"
+      pInputText
+      autocomplete="login"
+      #login="ngModel"
+      ngModel
+      name="login"
+    >
   </div>
-
-  <div class="mt-5 d-flex justify-content-center">
-    <button class="btn btn-primary"
-            [disabled]="!login || !psw || !pswRepeat"
-            >
+    <div class="input-wrapper">
+      <div class="left-padding">Пароль</div>
+      <input
+        class="input-item"
+        type="password"
+        pInputText
+        #psw="ngModel"
+        ngModel
+        name="psw"
+      >
+    </div>
+  <div class="input-wrapper">
+    <div class="left-padding">Подтвердите пароль</div>
+    <input
+      type="password"
+      class="input-item"
+      pInputText
+      #pswRepeat="ngModel"
+      ngModel
+      name="pswRepeat"
+    >
+  </div>
+  <div class="input-wrapper">
+    <div class="left-padding">Email</div>
+    <input
+      type="text"
+      class="input-item"
+      pInputText
+      autocomplete="email"
+      ngModel
+      name="email"
+      placeholder="example@gmail.com"
+    >
+  </div>
+  <div class="input-wrapper">
+    <div class="left-padding">Номер карты</div>
+    <input
+      type="text"
+      class="input-item"
+      pInputText
+      ngModel
+      name="cardNumber"
+      placeholder="50"
+    >
+  </div>
+  <footer class="footer">
+    <button class="registration-button btn btn-success" [disabled]="!login || !psw || !pswRepeat">
       Регистрация
     </button>
-  </div>
+  </footer>
 </form>
-<div>
-
-
-</div>
-
-<p-checkbox label="Сохранить пользователя в локальном хранилище"
-            [(ngModel)]="isNeedSaveToLocalStorage"
-            [binary]="true" >
-</p-checkbox>
-
-<div class="mt-5 d-flex justify-content-center">
-  <button class="btn btn-primary"
-          (click)="removeUsersFromLocalStorage($event)"
-          type="button">
-    Очистить пользователей хранилища
-  </button>
-</div>

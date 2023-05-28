@@ -1,4 +1,49 @@
-.registration-input-wrap span{
-  width: 176px;
-  display: inline-block;
+.form-wrapper {
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100%;
+  width: 29rem;
+  flex: 1;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.input-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.input-item {
+  height: 2.75rem;
+  margin: 1rem 2rem 1rem 1rem;
+}
+
+.registration-button {
+  height: 3rem;
+  width: 10rem;
+  margin: 1rem 0 2rem 0;
+  box-shadow: rgba(0, 0, 0, 0.16) 0 3px 6px, rgba(0, 0, 0, 0.23) 0 3px 6px;
+}
+
+.left-padding {
+  padding-left: 2.5rem;
+}
+
+.remove-button {
+  font-size: .85rem;
+  color: RGBA(255, 255, 255, 0.85);
+  box-shadow: rgba(0, 0, 0, 0.16) 0 3px 6px, rgba(0, 0, 0, 0.23) 0 3px 6px;
+}
+
+.storage-wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 1.25rem;
+  justify-content: center;
+  padding: 1.5rem 0;
+}
+
+.footer {
+  text-align: center;
 }

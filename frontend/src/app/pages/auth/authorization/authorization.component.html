@@ -6,7 +6,6 @@
       type="text"
       pInputText
       autocomplete="login"
-      [ngClass]="{'input-error': !login}"
       [(ngModel)]="login"
     >
   </div>
@@ -17,7 +16,6 @@
       type="password"
       pInputText
       autocomplete="password"
-      [ngClass]="{'input-error': !psw}"
       [(ngModel)]="psw"
     >
   </div>
@@ -46,11 +44,12 @@
       type="text"
       pInputText
       [(ngModel)]="cardNumber"
+      placeholder="50"
     >
   </div>
   <div class="button-wrapper">
     <button
-      class="input-item btn btn-success"
+      class="authorization-button btn btn-success"
       (click)="onAuth($event)"
       type="button"
       [disabled]="!login || !psw"

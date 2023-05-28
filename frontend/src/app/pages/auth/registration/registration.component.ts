@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {MessageService} from "primeng/api";
-import {IUser} from "../../../models/IUser";
-import {AuthService} from "../../../services/auth/auth.service";
-import {ConfigService} from "../../../services/config/config.service";
-import {UserService} from "../../../services/user/user.service";
-import {NgForm} from "@angular/forms";
+import { NgForm } from '@angular/forms';
+import { MessageService } from 'primeng/api';
+
+import { IUser } from '../../../models/IUser';
+import { AuthService } from '../../../services/auth/auth.service';
+import { UserService } from '../../../services/user/user.service';
 
 @Component({
   selector: 'app-registration',
@@ -12,8 +12,6 @@ import {NgForm} from "@angular/forms";
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
-  isNeedSaveToLocalStorage: false;
-  showCardNumber: boolean;
 
   constructor(
     private messageService:MessageService,
@@ -22,7 +20,7 @@ export class RegistrationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.showCardNumber = ConfigService.config.useUserCard;
+
   }
 
   /**
@@ -50,14 +48,9 @@ export class RegistrationComponent implements OnInit {
         );
     }
 
-
-  removeUsersFromLocalStorage($event: MouseEvent) {
-    this.userService.removeUsersFromLocalStorage();
-  }
-
   sendForm(form: NgForm): boolean | void {
     const user = form.value;
-    if(user.psw != user.pswRepeat){
+    if(user.psw != user.pswRepeat) {
       this.messageService.add({
         severity: 'error',
         summary: 'Ошибка валидации',
@@ -73,4 +66,3 @@ export class RegistrationComponent implements OnInit {
     return this.registration(user)
   }
 }
-
