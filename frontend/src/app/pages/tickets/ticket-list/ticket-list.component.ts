@@ -14,11 +14,11 @@ import { debounceTime, fromEvent, Subscription } from 'rxjs';
 export class TicketListComponent implements OnInit, AfterViewInit, OnDestroy {
   tickets: ITour[] = [];
   @ViewChild('blockDirective',{read: BlocksStyleDirective}) blockDirective:BlocksStyleDirective;
-  @ViewChild('tourWrap') tourWrap:ElementRef;
+  @ViewChild('tourWrap') tourWrap: ElementRef;
 
-  ticketsCopy: ITour[]=[];
-  ticketsCount: number=0;
-  ticketsFilteredCount: number=0;
+  ticketsCopy: ITour[] = [];
+  ticketsCount: number = 0;
+  ticketsFilteredCount: number = 0;
 
   @ViewChild('ticketSearchInput') ticketSearchInput: ElementRef;
   searchText: string = '';
@@ -38,7 +38,7 @@ export class TicketListComponent implements OnInit, AfterViewInit, OnDestroy {
       .pipe(
         debounceTime(500)
       )
-      .subscribe((ev)=>{
+      .subscribe((ev) => {
           this.searchTickets();
       });
     }
@@ -105,11 +105,9 @@ export class TicketListComponent implements OnInit, AfterViewInit, OnDestroy {
       this.ticketsCopy = this.tickets.filter((el) => el.date === dateValue);
     }
     setTimeout(() => {
-
       this.blockDirective.updateItems();
     });
   }
-
 
   goToTicketInfoPage(ticket: ITour) {
     this.router.navigate([`/tickets/ticket`],{queryParams:{id:(<any>ticket)._id}}).then(r=>console.log(r));
