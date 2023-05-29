@@ -21,10 +21,12 @@
     [selector]="'.ticket-item'"
     [initFirst]="true"
   >
-    <div class="m-2"
-         [id]="'ticket_'+i"
-         (click)="goToTicketInfoPage(ticket)"
-         *ngFor="let ticket of ticketsCopy; let i = index">
+    <div
+      *ngFor="let ticket of ticketsCopy; let i = index"
+      class="m-2"
+      [id]="'ticket_'+i"
+      (click)="goToTicketInfoPage(ticket)"
+    >
       <app-ticket-list-item [ticket]="ticket"></app-ticket-list-item>
     </div>
   </div>
