@@ -1,7 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
-import { TicketsService } from '../../../services/tickets/tickets.service';
 import { MessageService } from 'primeng/api';
+
+import { TicketsService } from '../../../services/tickets/tickets.service';
 
 @Component({
   selector: 'app-tour-loader',
@@ -34,38 +35,7 @@ export class TourLoaderComponent implements OnInit {
     )
   }
 
-  createTour(): void {
-    // const formData = form.value;
-    // console.log(formData)
-
-    // For reactiveForms
-    const tourDataRow = this.tourForm.getRawValue();
-    let formParams = new FormData();
-    if (typeof tourDataRow === 'object') {
-      for (let prop in tourDataRow) {
-        formParams.append(prop, tourDataRow[prop]);
-      }
-    }
-    console.log('!!!this.inputFileEl', this.inputFileEl.nativeElement.files[0])
-    const file = this.inputFileEl.nativeElement.files[0];
-    if (!file) {
-      console.log('file is empty');
-      return;
-    }
-    formParams.append('img', this.tourImg);
-    //formParams.set('img',this.tourImg);
-    // tourDataRow.img = this.tourImg;
-    console.log('this.tourImg', this.tourImg)
-    console.log('tourDataRow', formParams)
-    this.ticketsService.createTour(formParams)
-      .subscribe(
-        (data) => {
-          console.log(data)
-        }
-      )
-  }
-
-  createTour2(form: NgForm) {
+  createTour(form: NgForm) {
     const file = this.inputFileEl.nativeElement.files[0];
     if (!file) {
       alert('file is empty');
@@ -106,6 +76,4 @@ export class TourLoaderComponent implements OnInit {
     }
     fr.readAsDataURL(this.tourImg);
   }
-
-
 }

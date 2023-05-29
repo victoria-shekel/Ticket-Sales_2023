@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import {IOrder} from "../../../models/IOrder";
-import {OrdersService} from "../../../services/orders/orders.service";
+
+import { IOrder } from '../../../models/IOrder';
+import { OrdersService } from '../../../services/orders/orders.service';
 
 @Component({
   selector: 'app-orders',
   template: `
     <div>
-      <div *ngFor="let order of orders;">
-        <app-orders-item [order]="order"></app-orders-item>
+      <div *ngFor='let order of orders;'>
+        <app-orders-item [order]='order'></app-orders-item>
       </div>
     </div>
   `,

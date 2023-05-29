@@ -1,10 +1,10 @@
-import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {TicketsService} from "../../../services/tickets/tickets.service";
-import {ITour, ITourTypeSelect} from "../../../models/ITour";
-import {TicketsStorageService} from "../../../services/tickets-storage/tickets-storage.service";
-import {Router} from "@angular/router";
-import {BlocksStyleDirective} from "../../../directive/blocks-style.directive";
-import {debounceTime, fromEvent, Observable, Subject, Subscription} from "rxjs";
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { TicketsService } from '../../../services/tickets/tickets.service';
+import { ITour, ITourTypeSelect } from '../../../models/ITour';
+import { TicketsStorageService } from '../../../services/tickets-storage/tickets-storage.service';
+import { Router } from '@angular/router';
+import { BlocksStyleDirective } from '../../../directive/blocks-style.directive';
+import { debounceTime, fromEvent, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-ticket-list',
@@ -12,20 +12,21 @@ import {debounceTime, fromEvent, Observable, Subject, Subscription} from "rxjs";
   styleUrls: ['./ticket-list.component.scss'],
 })
 export class TicketListComponent implements OnInit, AfterViewInit, OnDestroy {
-  tickets:ITour[]=[];
+  tickets: ITour[] = [];
   @ViewChild('blockDirective',{read: BlocksStyleDirective}) blockDirective:BlocksStyleDirective;
   @ViewChild('tourWrap') tourWrap:ElementRef;
 
-  ticketsCopy:ITour[]=[];
-  ticketsCount:number=0;
-  ticketsFilteredCount:number=0;
+  ticketsCopy: ITour[]=[];
+  ticketsCount: number=0;
+  ticketsFilteredCount: number=0;
 
   @ViewChild('ticketSearchInput') ticketSearchInput: ElementRef;
-  searchText:string = '';
-  searchTicketSub:Subscription;
-  ticketType:ITourTypeSelect = {value:'all'};
+  searchText: string = '';
+  searchTicketSub: Subscription;
+  inputSearch: string;
+  ticketType: ITourTypeSelect = {value: 'all'};
   tourUnsubscriber: Subscription;
-  ticketUpdateSubjectSubscribe:Subscription;
+  ticketUpdateSubjectSubscribe: Subscription;
 
   constructor(private ticketsService:TicketsService,
               private ticketsStorage:TicketsStorageService,
@@ -70,14 +71,12 @@ export class TicketListComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnDestroy() {
     this.ticketUpdateSubjectSubscribe.unsubscribe();
     this.tourUnsubscriber.unsubscribe();
-    this.searchTicketSub.unsubscribe();
   }
 
-  // handleSearchTickets(ev:Event){
-  //   // const text = (ev?.target as HTMLInputElement).value;
-  //   // this.searchText = text;
-  //   this.searchTickets()
-  // }
+
+  /**
+   * Метод, реализующий поиск туров по введенному названию
+   */
   searchTickets(): void {
 
     if (this.ticketType.value=='all') {
@@ -108,14 +107,11 @@ export class TicketListComponent implements OnInit, AfterViewInit, OnDestroy {
     setTimeout(() => {
 
       this.blockDirective.updateItems();
-
-      // this.blockDirective.setAttrStyleBorder(0);  // сбрасываем индекс на 0 элемент
     });
   }
 
 
   goToTicketInfoPage(ticket: ITour) {
-    // this.router.navigate([`/tickets/ticket/${ticket.id}`]);
     this.router.navigate([`/tickets/ticket`],{queryParams:{id:(<any>ticket)._id}}).then(r=>console.log(r));
   }
 

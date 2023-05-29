@@ -1,20 +1,21 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {IOrder} from "../../../../models/IOrder";
-import {ITour} from "../../../../models/ITour";
-import {IUser} from "../../../../models/IUser";
-import {OrdersService} from "../../../../services/orders/orders.service";
+import { Component, Input, OnInit } from '@angular/core';
+
+import { IOrder } from '../../../../models/IOrder';
+import { ITour } from '../../../../models/ITour';
+import { IUser } from '../../../../models/IUser';
+import { OrdersService } from '../../../../services/orders/orders.service';
 
 @Component({
   selector: 'app-orders-item',
   template: `
-    <div class="order-item"  >
-      <div *ngIf="tour">
-        <h3 class="order-title">tour:{{tour.name}}, price:{{tour.price}}</h3>
+    <div class='order-item'  >
+      <div *ngIf='tour'>
+        <h3 class='order-title'>tour:{{tour.name}}, price:{{tour.price}}</h3>
       </div>
-      <div *ngIf="user">
-        <h3 class="order-title">client:{{user.login}}</h3>
+      <div *ngIf='user'>
+        <h3 class='order-title'>client:{{user.login}}</h3>
       </div>
-      <h3 class="order-title" >orderId:{{order._id}}</h3>
+      <h3 class='order-title' >orderId:{{order._id}}</h3>
     </div>
   `,
   styleUrls: [ './orders-item.scss'
@@ -36,7 +37,5 @@ export class OrdersItemComponent implements OnInit {
         this.tour = tour;
       })
     }
-
   }
-
 }

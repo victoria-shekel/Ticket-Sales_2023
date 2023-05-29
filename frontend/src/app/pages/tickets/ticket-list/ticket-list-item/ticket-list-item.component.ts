@@ -1,12 +1,17 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {ITour} from "../../../../models/ITour";
+import { Component, Input, OnInit } from '@angular/core';
+
+import { ITour } from '../../../../models/ITour';
 
 @Component({
   selector: 'app-ticket-list-item',
   template: `
     <div class="ticket-item"  >
       <h3 class="ticket-title" *ngIf="!ticket">Loading...</h3>
-      <img *ngIf="ticket" src="{{HostImgEndpoint}}{{ticket.img}}" />
+      <img
+        *ngIf="ticket"
+        src="{{HostImgEndpoint}}{{ticket.img}}"
+        alt="Фото тура"
+      >
       <div class="ticket-title">{{ticket?.name}}</div>
     </div>
   `,

@@ -1,24 +1,26 @@
-
-<div class="h-100 overflow-auto">
-  <div class="search_block">
-    <ng-container *ngIf="tickets">
-      <p>Всего туров {{ticketsCount}}</p>
-      <p>Найдено туров {{ticketsFilteredCount}}</p>
-      <div>Текущий элемент: {{blockDirective.activeElementIndex}} </div>
-    </ng-container>
-    <input #ticketSearchInput [(ngModel)]="searchText" type="text" pInputText   />
+<div *ngIf="ticketsFilteredCount; else noFoundTickets" class="h-100 overflow-auto">
+  <div class="search-block">
+    <div class="all-tours">Всего туров: {{ tickets.length }}</div>
+    <div class="find-tours">Найдено туров: <b>{{ ticketsFilteredCount }}</b></div>
+    <p class="my-3">
+      <input
+        class="input-search"
+        placeholder="Введите значение"
+        type="text"
+        [(ngModel)]="inputSearch"
+        (input)="searchTickets()"
+      >
+    </p>
   </div>
   <div
-       appBlocksStyle
-       #tourWrap
-       #blockDirective = 'blocksStyle'
-
-       (renderComplete)="directiveRenderComplete($event)"
-       class = "d-flex flex-wrap justify-content-around"
-       [selector]="'.ticket-item'"
-       [initFirst]="true"
+    appBlocksStyle
+    #tourWrap
+    #blockDirective = 'blocksStyle'
+    (renderComplete)="directiveRenderComplete($event)"
+    class = "d-flex flex-wrap justify-content-around"
+    [selector]="'.ticket-item'"
+    [initFirst]="true"
   >
-
     <div class="m-2"
          [id]="'ticket_'+i"
          (click)="goToTicketInfoPage(ticket)"
@@ -27,3 +29,22 @@
     </div>
   </div>
 </div>
+<ng-template #noFoundTickets>
+  <div class="search-block">
+    <div class="all-tours">Всего туров: {{ tickets.length }}</div>
+    <div class="find-tours">Найдено туров: <b>{{ ticketsFilteredCount }}</b></div>
+    <p class="my-3">
+      <input
+        class="input-search"
+        placeholder="Введите значение"
+        type="text"
+        [(ngModel)]="inputSearch"
+        (input)="searchTickets()"
+      >
+    </p>
+  </div>
+  <div class="undefined-result">
+    <p>Результаты не найдены...</p>
+    <img class="undefined-result__img" src="../../../../assets/img/search_cat_96.png" alt="Search cat">
+  </div>
+</ng-template>

@@ -1,5 +1,8 @@
-import {AfterViewInit, Component, ElementRef, OnInit, Output, ViewChild} from '@angular/core';
-import {IMenuType} from "../../models/IMenuType";
+import { AfterViewInit, Component, ElementRef, OnInit, Output, ViewChild } from '@angular/core';
+
+import { IMenuType } from '../../models/IMenuType';
+
+
 
 @Component({
   selector: 'app-tickets',
@@ -13,14 +16,12 @@ export class TicketsComponent implements OnInit, AfterViewInit {
   constructor( ) { }
 
   ngOnInit(): void {
-
-
-
   }
+
   ngAfterViewInit(): void {
   }
+
   public updateSelectedType(ev: IMenuType): void {
     this.selectedType = ev;
   }
-
 }
