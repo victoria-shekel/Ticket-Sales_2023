@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
-import { ITour, ITourLocation } from '../../../models/ITour';
+import { ITour } from '../../../models/ITour';
 import { ActivatedRoute } from '@angular/router';
 import { IUser } from '../../../models/IUser';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -19,8 +19,7 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
   ticket?: ITour;
   user: IUser | null;
   userForm: FormGroup;
-  nearestTours?: ITour[];//INearestTour[];
-  toursLocation?: ITourLocation[];
+  nearestTours?: ITour[];
   searchText: any;
   @ViewChild('ticketSearchInput') ticketSearchInput: ElementRef;
   @ViewChild('popup') popup: PopupComponent;
@@ -30,9 +29,11 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
   ticketRestSub: Subscription;
   searchTicketSub: Subscription;
 
-  constructor(private route: ActivatedRoute,
-              private ticketsService: TicketsService,
-              private userService: UserService) {
+  constructor(
+    private route: ActivatedRoute,
+    private ticketsService: TicketsService,
+    private userService: UserService,
+  ) {
   }
 
   ngOnInit(): void {
@@ -58,9 +59,7 @@ export class TicketItemComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-
-
-    const fromEventObserver = fromEvent(this.ticketSearchInput.nativeElement, 'keyup', {passive: true});
+    const fromEventObserver = fromEvent(this.ticketSearchInput?.nativeElement, 'keyup', {passive: true});
     this.searchTicketSub = fromEventObserver
       .subscribe(() => {
         this.initSearchNearerTour(this.searchText);

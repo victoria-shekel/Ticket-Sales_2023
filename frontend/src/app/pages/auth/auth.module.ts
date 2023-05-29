@@ -16,7 +16,6 @@ import { RegistrationComponent } from './registration/registration.component';
     AuthorizationComponent,
     AuthComponent,
     RegistrationComponent,
-
   ],
   imports: [
     CommonModule,

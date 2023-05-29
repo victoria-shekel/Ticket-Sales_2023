@@ -1,16 +1,11 @@
 import {
   Body,
   Controller,
-  Get,
-  Param,
   Post,
-  StreamableFile,
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { createReadStream } from 'fs';
-import { join } from 'path';
 import { diskStorage } from 'multer';
 
 import { ITourClient } from '../../models/ITourClient';
@@ -23,12 +18,6 @@ export class TourItemController {
 
   constructor(private readonly toursService: ToursService) {}
 
-  // @Get('getImage/:imgName')
-  // getImage(@Param('imgName') imgName: string): StreamableFile {
-  //   const file = createReadStream(join(process.cwd(), `./public/${imgName}`));
-  //   return new StreamableFile(file);
-  // }
-
   @Post()
   @UseInterceptors(
     FileInterceptor('img', {
@@ -38,8 +27,7 @@ export class TourItemController {
           const imgType = file.mimetype.split('/');
           const uniqueSuffix =
             Date.now() + '-' + Math.round(Math.random() * 1e9);
-          const imgName =
-            file.fieldname + '-' + uniqueSuffix + '.' + imgType[1];
+          const imgName = file.filename + '-' + uniqueSuffix + '.' + imgType[1];
 
           TourItemController.imgName = imgName;
           callback(null, imgName);
